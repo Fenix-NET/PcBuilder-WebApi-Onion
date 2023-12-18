@@ -4,7 +4,6 @@ using Core.Services;
 using Infrastructure.LoggerService;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Serilog;
 
 namespace Web.Extensions
@@ -36,6 +35,18 @@ namespace Web.Extensions
 
         public static void ConfigureServiceManager(this IServiceCollection services) =>
             services.AddScoped<IServiceManager, ServiceManager>();
+
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(new ConfigurationBuilder()
+                    .AddJsonFile("serilog.config.json")
+                    .Build())
+                .Enrich.FromLogContext()
+                .CreateLogger();
+
+            services.AddSingleton<ILoggerManager, LoggerManager>();
+        }
 
     }
 }

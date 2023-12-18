@@ -1,4 +1,5 @@
 using Web.Extensions;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
+builder.Services.ConfigureLoggerService();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

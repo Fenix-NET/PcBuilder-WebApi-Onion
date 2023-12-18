@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+﻿using AutoMapper;
+using Core.Interfaces;
 using Core.Interfaces.Repository;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace Core.Services
     {
         private readonly Lazy<IProductService> _productService;
 
-        public ServiceManager(IRepositoryManager repositoryManager)
+        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper)
         {
             _productService = new Lazy<IProductService>(() =>
-                new ProductService(repositoryManager));
+                new ProductService(repositoryManager, mapper));
         }
 
         public IProductService ProductService => _productService.Value;

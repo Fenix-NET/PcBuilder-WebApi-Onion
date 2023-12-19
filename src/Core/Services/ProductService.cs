@@ -23,19 +23,19 @@ namespace Core.Services
             _mapper = mapper;   
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync(bool trackChanges, CatalogParameters parameters)
+        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync(bool trackChanges, int categoryId, CatalogParameters parameters)
         {
-            var products = await _repository.Product.GetAllProductsAsync(trackChanges, parameters);
+            var products = await _repository.Product.GetAllProductsAsync(trackChanges, categoryId, parameters);
             var productsDto = _mapper.Map<IEnumerable<ProductDto>>(products);
             return productsDto;
         }
 
-        public async Task<ProductDto> GetProductAsync(Guid Id, bool trackChanges)
-        {
-            var product = await _repository.Product.GetProductAsync(Id, trackChanges);
+        //public async Task<ProductDto> GetProductAsync(Guid Id, bool trackChanges)
+        //{
+        //    var product = await _repository.Product.GetProductAsync(Id, trackChanges);
 
-            var productDto = _mapper.Map<ProductDto>(product);
-            return productDto;
-        }
+        //    var productDto = _mapper.Map<ProductDto>(product);
+        //    return productDto;
+        //}
     }
 }

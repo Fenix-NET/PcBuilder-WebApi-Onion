@@ -6,7 +6,7 @@ using Core.Shared.RequestFeatures;
 
 namespace Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/catalog")]
     [ApiController]
     public class CatalogController : ControllerBase
     {
@@ -18,11 +18,11 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllCpuAsync([FromQuery] CatalogParameters parameters)
+        public async Task<ActionResult> GetAllCpuAsync(int categoryId, [FromQuery] CatalogParameters parameters)
         {
             try
             {
-                var productsResult = await _service.ProductService.GetAllProductsAsync(trackChanges: false, parameters);
+                var productsResult = await _service.ProductService.GetAllProductsAsync(trackChanges: false, categoryId, parameters);
                 return Ok(productsResult);
             }
             catch
@@ -31,11 +31,11 @@ namespace Web.Controllers
             }
         }
 
-        [HttpGet("{id:Guid}")]
-        public async Task<IActionResult> GetProduct(Guid Id)
-        {
-            var cpu = await _service.ProductService.GetProductAsync(Id, trackChanges: false);
-            return Ok(cpu);
-        }
+        //[HttpGet("{id:Guid}")]
+        //public async Task<IActionResult> GetProduct(Guid Id)
+        //{
+        //    var cpu = await _service.ProductService.GetProductAsync(Id, trackChanges: false);
+        //    return Ok(cpu);
+        //}
     }
 }

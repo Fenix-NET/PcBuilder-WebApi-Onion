@@ -1,5 +1,8 @@
 using Web.Extensions;
 using AutoMapper;
+using Core.Interfaces;
+using Core.Services.DataShaping;
+using Core.Shared.RequestFeatures;
 
 var builder = WebApplication.CreateBuilder(args);
 

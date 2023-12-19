@@ -11,7 +11,7 @@ namespace Core.Interfaces
 {
     public interface IProductService
     {
-        Task<IEnumerable<ProductDto>> GetAllProductsAsync(bool trackChanges, CatalogParameters parameters);
-        Task<ProductDto> GetProductAsync(Guid Id, bool trackChanges);
+        Task<IEnumerable<ProductDto>> GetAllProductsAsync(bool trackChanges, int categoryId, CatalogParameters parameters);
+        //Task<ProductDto> GetProductAsync(Guid Id, bool trackChanges);
     }
 }

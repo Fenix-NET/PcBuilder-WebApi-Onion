@@ -14,11 +14,17 @@ namespace Core.Shared.RequestFeatures
         }
         public uint MinPrice { get; set; }
         public uint MaxPrice { get; set; } = int.MaxValue;
-        public string? CategoryName { get; set; }
-        public string? Manufacturer { get; set; }
-        public string? Model { get; set; }
-        public string? SearchTerm { get; set; }
-
+        //public int CategoryId { get; set; }
+        public List<string>? Manufacturer { get; set; }
+        public List<string>? Model { get; set; }
+        public List<string>? GpuProc { get; set; }
+        public List<string>? PowerUsage { get; set; }
+        public List<string>? VideoMemorySize { get; set; }
+        public List<string>? VideoMemoryType { get; set; }
+        public List<string>? SearchTerm { get; set; }
+        public List<string>? CoreCount { get; set; }
+        public List<string>? Frequency { get; set; }
+        public List<string>? Socket { get; set; }
 
         public bool ValidPriceRange => MinPrice <= MaxPrice;
     }

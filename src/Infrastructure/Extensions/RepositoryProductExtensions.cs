@@ -7,35 +7,30 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Entities.Models;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Extensions
 {
     public static class RepositoryProductExtensions
     {
-        public static IQueryable<AttributeValue> FilterCategory(this IQueryable<AttributeValue> products, int categoryId)
+        public static IQueryable<Product> FilterCategory(this IQueryable<Product> products, int categoryId)
         {
-            
-            return products.Where(e => e.AttributeName.CategoryId == categoryId);
+            return products.Where(e => e.CategoryId == categoryId);
         }
 
-        public static IQueryable<AttributeValue> FilterParams(this IQueryable<AttributeValue> products, CatalogParameters parameters)
+        public static IQueryable<Product> FilterParams(this IQueryable<Product> products, CatalogParameters parameters)
         {
-            if (parameters != null)
-            {
-                products = products.Where(e => parameters.GpuProc.Contains(e.Value));
+            var filterResult = products.Where(e => e.Price >= parameters.MinPrice && e.Price <= parameters.MaxPrice);
+            
+            if (parameters.Model != null)
+                filterResult = filterResult.Where(e => parameters.Model.Contains(e.Model));
 
-                return products;
-            }
-            return products;
+            if (parameters.Manufacturer != null)
+                filterResult = filterResult.Where(e => parameters.Manufacturer.Contains(e.Manufacturer.Name));
+
+            return filterResult;
             
         }
-
-        //public static IQueryable<Product> FilterParams(this IQueryable<Product> products, CatalogParameters parameters)
-        //{
-        //    products = products.Where(e => );
-
-        //    return products;
-        //}
 
         public static IQueryable<Product> Search(this IQueryable<Product> products, string searchTerm)
         {

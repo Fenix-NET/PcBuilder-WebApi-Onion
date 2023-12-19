@@ -23,9 +23,9 @@ namespace Core.Services
             _mapper = mapper;   
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync(bool trackChanges, int categoryId, CatalogParameters parameters)
+        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync(bool trackChanges, CatalogParameters parameters)
         {
-            var products = await _repository.Product.GetAllProductsAsync(trackChanges, categoryId, parameters);
+            var products = await _repository.Product.GetAllProductsAsync(trackChanges, parameters);
             var productsDto = _mapper.Map<IEnumerable<ProductDto>>(products);
             return productsDto;
         }

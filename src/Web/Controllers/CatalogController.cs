@@ -18,11 +18,11 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllCpuAsync(int categoryId, [FromQuery] CatalogParameters parameters)
+        public async Task<ActionResult> GetAllCpuAsync([FromQuery] CatalogParameters parameters)
         {
             try
             {
-                var productsResult = await _service.ProductService.GetAllProductsAsync(trackChanges: false, categoryId, parameters);
+                var productsResult = await _service.ProductService.GetAllProductsAsync(trackChanges: false, parameters);
                 return Ok(productsResult);
             }
             catch

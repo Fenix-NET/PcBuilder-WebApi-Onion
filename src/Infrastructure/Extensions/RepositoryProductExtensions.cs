@@ -21,9 +21,6 @@ namespace Infrastructure.Extensions
         public static IQueryable<Product> FilterParams(this IQueryable<Product> products, CatalogParameters parameters)
         {
             var filterResult = products.Where(e => e.Price >= parameters.MinPrice && e.Price <= parameters.MaxPrice);
-            
-            if (parameters.Model != null)
-                filterResult = filterResult.Where(e => parameters.Model.Contains(e.Model));
 
             if (parameters.Manufacturer != null)
                 filterResult = filterResult.Where(e => parameters.Manufacturer.Contains(e.Manufacturer.Name));

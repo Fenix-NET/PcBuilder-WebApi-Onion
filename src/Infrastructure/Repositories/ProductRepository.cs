@@ -17,13 +17,14 @@ namespace Infrastructure.Repositories
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync(bool trackChanges, CatalogParameters parameters)
         {
+
             var filterResults = await FindAll(trackChanges)
                 .FilterCategory(parameters.CategoryId)
                 .FilterParams(parameters)
+                .Search(parameters.SearchTerm)
                 .Skip((parameters.PageNumber - 1) * parameters.PageSize)
                 .Take(parameters.PageSize)
                 .ToListAsync();
-
 
             return filterResults;
         }

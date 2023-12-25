@@ -24,6 +24,8 @@ namespace Infrastructure.Repositories
                 .Search(parameters.SearchTerm)
                 .Skip((parameters.PageNumber - 1) * parameters.PageSize)
                 .Take(parameters.PageSize)
+                .Include((e) => e.AttributeValues)
+                .Include(e => e.Manufacturer)
                 .ToListAsync();
 
             return filterResults;

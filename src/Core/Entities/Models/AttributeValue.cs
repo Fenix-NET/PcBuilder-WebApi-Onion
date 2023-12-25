@@ -11,7 +11,6 @@ namespace Core.Entities.Models
         public string Value { get; set; } = null!;
         [Column("product_id")]
         public Guid ProductId { get; set; }
-        public Product Product { get; set; }
         [Column("attribute_name_id")]
         public int AttributeNameId { get; set; }
         public AttributeName AttributeName { get; set; }

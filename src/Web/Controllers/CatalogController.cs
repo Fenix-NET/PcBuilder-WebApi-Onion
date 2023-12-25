@@ -18,7 +18,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllCpuAsync([FromQuery] CatalogParameters parameters)
+        public async Task<ActionResult> GetProductsAsync([FromQuery] CatalogParameters parameters)
         {
             try
             {

@@ -9,6 +9,6 @@ namespace Core.Entities.Models
         public int Id { get; set; }
         [Column("name")]
         public string Name { get; set; } = string.Empty;
-        public ICollection<Product> Products { get; } = new List<Product>();
+        //public ICollection<Product> Products { get; } = new List<Product>();
     }
 }

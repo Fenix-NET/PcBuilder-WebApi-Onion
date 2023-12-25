@@ -12,8 +12,9 @@ namespace Core.Shared.RequestFeatures
         {
             //Sort = "Id";
         }
-        public uint MinPrice { get; set; }
-        public uint MaxPrice { get; set; } = int.MaxValue;
+
+        public uint? MinPrice { get; set; } = 0;
+        public uint? MaxPrice { get; set; } = uint.MaxValue;
         public int CategoryId { get; set; }
         public List<string>? Manufacturer { get; set; }
         public List<string>? Model { get; set; }

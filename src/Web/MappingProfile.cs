@@ -9,8 +9,9 @@ namespace Web
     {
         public MappingProfile()
         {
-            CreateMap<Product, ProductDto>();
-            CreateMap<AttributeValue, ProductDto>();
+            CreateMap<Product, ProductDto>().ForMember(dest =>
+                dest.ManufacturerName, opt =>
+                opt.MapFrom(src => src.Manufacturer.Name));
         }
     }
 }
